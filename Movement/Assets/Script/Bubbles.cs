@@ -8,19 +8,20 @@ public class Bubbles : MonoBehaviour {
     int health = 1;
 
     public Text wordformed;
+
+    public int sc_increment = 0;
     public Words words = new Words();
     string word = "";
-    string nxtletter = "B";
+    string nxtletter = "";
 
     void Awake()
     {
-        wordformed = gameObject.GetComponent<Text>();
-
-
+        
     }
 
     void OnTriggerEnter2D()
     {
+        
         Debug.Log("Trigger!");
         health--;
         if (health<= 0)
@@ -32,14 +33,14 @@ public class Bubbles : MonoBehaviour {
     void Die()
     {
         spellWord();
-        Destroy(gameObject);
-        
+        Destroy(gameObject);    
     }
 
 
     void spellWord()
     {
-        if (word == null)
+        
+        if (word == "")
         {
             word = words.getNextWord(0);
         }
@@ -60,18 +61,19 @@ public class Bubbles : MonoBehaviour {
 
         if (wordformed.text.Length == 4)
         {
-            wordformed.text = "You done it pal";
+            sc_increment++;
+            wordformed.text = "";
             getNextWord();
+
         }
     }
 
     void getNextWord()
     {
-            for (int i = 1; i < words.Size(); i++)
-            {
-                word = words.getNextWord(i);
-            }
-        
+        for (int i = 1; i < words.Size(); i++)
+        {
+            word = words.getNextWord(i);
+        }
     }
 
     public string getNextLetter(int next)

@@ -7,7 +7,7 @@ namespace Assets.Script
 {
     public class Words
     {
-        static string[] easyWords = { "BALL", "BARK", "COIN", "FUEL" };
+        static string[] easyWords = { "BALL", "KARK", "COIN", "FUEL" };
 
         public Words()
         {
