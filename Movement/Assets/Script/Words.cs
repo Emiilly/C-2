@@ -7,18 +7,25 @@ namespace Assets.Script
 {
     public class Words
     {
-        static string printedWord = "BALL";
+        static string[] easyWords = { "BALL", "BARK", "COIN", "FUEL" };
 
         public Words()
         {
 
         }
 
-        public string getNext(int next)
+        public string getNextWord(int next)
         {
-            return printedWord[next].ToString();
+            return easyWords[next];
         }
 
-        
+        public int Size()
+        {
+            return easyWords.Length;
+        }
+
+
+
+
     }
 }
