@@ -4,24 +4,22 @@ using UnityEngine.UI;
 using Assets.Script;
 
 public class Bubbles : MonoBehaviour {
-
     int health = 1;
 
     public Text wordformed;
-
-    public int sc_increment = 0;
     public Words words = new Words();
     string word = "";
-    string nxtletter = "";
+    string nxtletter = "B";
 
     void Awake()
     {
-        
+        wordformed = gameObject.GetComponent<Text>();
+
+
     }
 
     void OnTriggerEnter2D()
     {
-        
         Debug.Log("Trigger!");
         health--;
         if (health<= 0)
@@ -33,16 +31,16 @@ public class Bubbles : MonoBehaviour {
     void Die()
     {
         spellWord();
-        Destroy(gameObject);    
+        Destroy(gameObject);
+        
     }
 
 
     void spellWord()
     {
-        
-        if (word == "")
+        if (word == null)
         {
-            word = words.getNextWord(0);
+            word = words.getNextWord();
         }
 
         nxtletter = getNextLetter(wordformed.text.Length);
@@ -61,23 +59,30 @@ public class Bubbles : MonoBehaviour {
 
         if (wordformed.text.Length == 4)
         {
-            sc_increment++;
-            wordformed.text = "";
+            wordformed.text = "You done it pal";
             getNextWord();
-
         }
     }
 
     void getNextWord()
     {
-        for (int i = 1; i < words.Size(); i++)
-        {
-            word = words.getNextWord(i);
-        }
+            for (int i = 1; i < words.Size(); i++)
+            {
+                word = words.getNextWord();
+            }
+        
     }
 
     public string getNextLetter(int next)
     {
         return word[next].ToString();
+    }
+
+    void Update()
+    {
+        wordformed = gameObject.GetComponent<Text>();
+
+        wordformed.text = words.giveCurrent();
+
     }
 }
