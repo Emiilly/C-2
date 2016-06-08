@@ -13,14 +13,12 @@ public class Bubbles : MonoBehaviour {
 
     void Awake()
     {
-        wordformed = gameObject.GetComponent<Text>();
-
-
+        wordformed = gameObject.AddComponent<Text>();
     }
 
     void OnTriggerEnter2D()
     {
-        Debug.Log("Trigger!");
+        Debug.Log("TRIGGERED!");
         health--;
         if (health<= 0)
         {            
@@ -80,9 +78,6 @@ public class Bubbles : MonoBehaviour {
 
     void Update()
     {
-        wordformed = gameObject.GetComponent<Text>();
-
         wordformed.text = words.giveCurrent();
-
     }
 }

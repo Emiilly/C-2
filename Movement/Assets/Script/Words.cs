@@ -19,7 +19,7 @@ namespace Assets.Script
         bool first_selection = true;
         static string[] easyWords = { "BALL", "BARK", "COIN", "FUEL" };
         static string[] mediumWords = { "BALL", "BARK", "COIN", "FUEL" };
-        static string[] hardWords = { "BALL", "BARK", "COIN", "FUEL" };
+        static string[] hardWords = { "BALL", "BARK", "COIN", "FUEL" }; //jetfuel cant melt steelbeams #bushdid911
 
         static Word[] dummyWords = { new Word("BALL"), new Word("BARK"), new Word("COIN"), new Word("FUEL") };
 
@@ -32,18 +32,18 @@ namespace Assets.Script
         {
 
             //easyword next
-            if (this.currentstate == wordstates.easy)
+            if (currentstate == wordstates.easy)
             {
-                if (this.first_selection == true)
+                if (first_selection == true)
                 {
-                    this.first_selection = false;
+                    first_selection = false;
                     return easyWords[0];
                 }
                 else
                 {
-                    if (this.currentselection + 1 <= easyWords.Length - 1)  //may need to check if it's based on 0 or not
+                    if (currentselection + 1 <= easyWords.Length - 1)  //may need to check if it's based on 0 or not
                     {
-                        this.currentselection++;
+                        currentselection++;
                         return easyWords[currentselection];
                     }
                     else
@@ -55,18 +55,18 @@ namespace Assets.Script
             }
 
             //mediumword next
-            if (this.first_selection == true)
+            if (first_selection == true)
             {
-                this.first_selection = false;
+                first_selection = false;
                 return mediumWords[0];
             }
             else
             {
-                if (this.currentstate == wordstates.medium)
+                if (currentstate == wordstates.medium)
                 {
-                    if (this.currentselection + 1 <= mediumWords.Length - 1)
+                    if (currentselection + 1 <= mediumWords.Length - 1)
                     {
-                        this.currentselection++;
+                        currentselection++;
                         return mediumWords[currentselection];
                     }
                     else
@@ -78,18 +78,18 @@ namespace Assets.Script
             }
 
             //hardword next
-            if (this.first_selection == true)
+            if (first_selection == true)
             {
-                this.first_selection = false;
+                first_selection = false;
                 return hardWords[0];
             }
             else
             {
-                if (this.currentstate == wordstates.hard)
+                if (currentstate == wordstates.hard)
                 {
-                    if (this.currentselection + 1 <= hardWords.Length - 1)
+                    if (currentselection + 1 <= hardWords.Length - 1)
                     {
-                        this.currentselection++;
+                        currentselection++;
                         return hardWords[currentselection];
                     }
                     else
@@ -99,16 +99,16 @@ namespace Assets.Script
                     }
                 }
             }
-            if (this.currentstate == wordstates.test)
+            if (currentstate == wordstates.test)
             {
-                if (this.first_selection == true)
+                if (first_selection == true)
                 {
-                    this.first_selection = false;
+                    first_selection = false;
                     return dummyWords[0].giveSelf();
                 }
                 else
                 {
-                    if (this.currentselection + 1 <= easyWords.Length - 1)  //may need to check if it's based on 0 or not
+                    if (currentselection + 1 <= easyWords.Length - 1)  //may need to check if it's based on 0 or not
                     {
                         this.currentselection++;
                         return dummyWords[currentselection].giveSelf();
@@ -131,23 +131,23 @@ namespace Assets.Script
 
         public void reset()
         {
-            this.first_selection = true;
-            this.currentselection = 0;
+            first_selection = true;
+            currentselection = 0;
         }
 
         public string giveCurrent()
         {
 
             //easyword next
-            if (this.currentstate == wordstates.easy)
+            if (currentstate == wordstates.easy)
             {
                 return easyWords[currentselection];
             }
-            if (this.currentstate == wordstates.medium)
+            if (currentstate == wordstates.medium)
             {
                 return easyWords[currentselection];
             }
-            if (this.currentstate == wordstates.hard)
+            if (currentstate == wordstates.hard)
             {
                 return easyWords[currentselection];
             }
