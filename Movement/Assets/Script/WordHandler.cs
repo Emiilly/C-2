@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// CLASS IS NOT USED, Future implementations, maybe
+/// </summary>
 public class WordHandler : MonoBehaviour
 {
     public Text wordformed;    //when do I use this?

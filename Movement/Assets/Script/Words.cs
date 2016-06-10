@@ -2,6 +2,9 @@
 
 namespace Assets.Script
 {
+    /// <summary>
+    /// Main class for holding the words, in the future, will have word objects
+    /// </summary>
     public class Words
     {
         /// <summary>
@@ -25,14 +28,14 @@ namespace Assets.Script
 
         private bool first_selection = true;
         private static string[] easyWords = { "BALL", "BARK", "COIN", "FUEL" };
-        private static string[] mediumWords = { "BALL", "BARK", "COIN", "FUEL" };
-        private static string[] hardWords = { "BALL", "BARK", "COIN", "FUEL" }; //jetfuel cant melt steelbeams #bushdid911
+        private static string[] mediumWords = { "BEARD", "BRAKE", "COINAGE", "REDGUARD" };
+        private static string[] hardWords = { "CRUCIBLE", "AIRPLANE", "MISERABLE", "DISGUSTING" }; //jetfuel cant melt steelbeams #bushdid911
 
         private static Word[] dummyWords = { new Word("BALL"), new Word("BARK"), new Word("COIN"), new Word("FUEL") };
 
         public Words()
         {
-            //stupid fucking ini
+           //initializing because too dumb to set up first selection
             string dummy=this.getNextWord();
 
         }
@@ -55,6 +58,10 @@ namespace Assets.Script
             return this.spellingpos;
         }
 
+        /// <summary>
+        /// shuffles down one in the array
+        /// </summary>
+        /// <returns></returns>
         public string getNextWord()
         {
             //easyword next
@@ -155,10 +162,26 @@ namespace Assets.Script
 
             return "NAN";
         }
-
+        /// <summary>
+        /// gets the size of the current array
+        /// </summary>
+        /// <returns></returns>
         public int Size()
         {
-            return easyWords.Length;
+            if(currentstate==wordstates.easy)
+            {
+                return easyWords.Length;
+            }
+            if (currentstate == wordstates.medium)
+            {
+                return mediumWords.Length;
+            }
+            if (currentstate == wordstates.easy)
+            {
+                return hardWords.Length;
+            }
+            return 0;
+
         }
 
         public void reset()
@@ -177,11 +200,11 @@ namespace Assets.Script
             }
             if (currentstate == wordstates.medium)
             {
-                return easyWords[currentselection];
+                return mediumWords[currentselection];
             }
             if (currentstate == wordstates.hard)
             {
-                return easyWords[currentselection];
+                return hardWords[currentselection];
             }
 
             return "error, no state set";
