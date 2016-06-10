@@ -9,13 +9,12 @@ using UnityEngine.UI;
 public class Bubbles : MonoBehaviour
 {
     private static int health = 2;        //hp of the player, 2 wrongs and they are out.
-    private static string word = null;    //word holder, part of the old way, may be redundant.
+    public static string word = null;    //word holder, part of the old way, may be redundant.
     private string nxtletter;           //nxt letter to compare strike
     private bool wordspelt = false;     //completed word bool
     private static string speltword="";
     public Text wordformed;
     private static Words words = null;     //words class handler
-
 
 
     /// <summary>
@@ -38,7 +37,7 @@ public class Bubbles : MonoBehaviour
         return speltword;
     }
 
-    private static string GetWord()
+    public static string GetWord()
     {
         if (word == null)
         {
@@ -50,6 +49,7 @@ public class Bubbles : MonoBehaviour
 
     private void Start()
     {
+
     }
 
     private void Awake()
