@@ -1,36 +1,62 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Assets.Script
-{    public class Words
+{
+    public class Words
     {
         /// <summary>
         /// game state enum for cycling the words
         /// </summary>
-        enum wordstates { easy, medium, hard, test };
-        wordstates currentstate = wordstates.easy;  //defaults to easy
+        private enum wordstates
+        { easy, medium, hard, test };
+
+        private static wordstates currentstate = wordstates.easy;  //defaults to easy
 
         /// <summary>
         /// int that logs the current word selection
         /// </summary>
         private int currentselection = 0;
-        bool first_selection = true;
-        static string[] easyWords = { "BALL", "BARK", "COIN", "FUEL" };
-        static string[] mediumWords = { "BALL", "BARK", "COIN", "FUEL" };
-        static string[] hardWords = { "BALL", "BARK", "COIN", "FUEL" }; //jetfuel cant melt steelbeams #bushdid911
 
-        static Word[] dummyWords = { new Word("BALL"), new Word("BARK"), new Word("COIN"), new Word("FUEL") };
+        /// <summary>
+        /// int that logs the position of the current word being spelt
+        /// defaults to 0
+        /// </summary>
+        private int spellingpos = 0;
+
+        private bool first_selection = true;
+        private static string[] easyWords = { "BALL", "BARK", "COIN", "FUEL" };
+        private static string[] mediumWords = { "BALL", "BARK", "COIN", "FUEL" };
+        private static string[] hardWords = { "BALL", "BARK", "COIN", "FUEL" }; //jetfuel cant melt steelbeams #bushdid911
+
+        private static Word[] dummyWords = { new Word("BALL"), new Word("BARK"), new Word("COIN"), new Word("FUEL") };
 
         public Words()
         {
+            //stupid fucking ini
+            string dummy=this.getNextWord();
 
+        }
+
+        /// <summary>
+        /// advances the spelling pos by 1
+        /// currently has NO checks for out of bounds bullshit
+        /// </summary>
+        public void letterhit()
+        {
+            this.spellingpos += 1;
+        }
+
+        /// <summary>
+        /// returns the head of current word
+        /// </summary>
+        /// <returns></returns>
+        public int giveWordHead()
+        {
+            return this.spellingpos;
         }
 
         public string getNextWord()
         {
-
             //easyword next
             if (currentstate == wordstates.easy)
             {
@@ -41,9 +67,10 @@ namespace Assets.Script
                 }
                 else
                 {
-                    if (currentselection + 1 <= easyWords.Length - 1)  //may need to check if it's based on 0 or not
+                    if (currentselection + 1 < easyWords.Length )  //may need to check if it's based on 0 or not
                     {
                         currentselection++;
+                        this.spellingpos = 0;
                         return easyWords[currentselection];
                     }
                     else
@@ -67,6 +94,8 @@ namespace Assets.Script
                     if (currentselection + 1 <= mediumWords.Length - 1)
                     {
                         currentselection++;
+                        this.spellingpos = 0;
+
                         return mediumWords[currentselection];
                     }
                     else
@@ -90,6 +119,8 @@ namespace Assets.Script
                     if (currentselection + 1 <= hardWords.Length - 1)
                     {
                         currentselection++;
+                        this.spellingpos = 0;
+
                         return hardWords[currentselection];
                     }
                     else
@@ -111,6 +142,7 @@ namespace Assets.Script
                     if (currentselection + 1 <= easyWords.Length - 1)  //may need to check if it's based on 0 or not
                     {
                         this.currentselection++;
+                        this.spellingpos = 0;
                         return dummyWords[currentselection].giveSelf();
                     }
                     else
@@ -133,11 +165,11 @@ namespace Assets.Script
         {
             first_selection = true;
             currentselection = 0;
+            this.spellingpos = 0;
         }
 
         public string giveCurrent()
         {
-
             //easyword next
             if (currentstate == wordstates.easy)
             {
@@ -152,14 +184,22 @@ namespace Assets.Script
                 return easyWords[currentselection];
             }
 
-
             return "error, no state set";
         }
+
+        /// <summary>
+        /// sets the level of the game using a string input
+        /// </summary>
+        /// <param name="input"></param>
+        public static void setLevel(string input)
+        {
+            foreach (wordstates x in Enum.GetValues(typeof(wordstates)))
+            {
+                if (input == x.ToString())
+                {
+                    currentstate = x;
+                }
+            }
+        }
     }
-
 }
-  
-
-
-    
-

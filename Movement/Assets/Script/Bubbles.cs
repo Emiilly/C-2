@@ -1,105 +1,214 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Script;
+using UnityEngine;
 using UnityEngine.UI;
-using Assets.Script;
 
-public class Bubbles : MonoBehaviour {
-    int health = 1;
+//be mindful of below
+//it is a patchwerked mess, much of it coded free hand without much of a plan
+// you hath been forewarned
 
+public class Bubbles : MonoBehaviour
+{
+    private static int health = 2;        //hp of the player, 2 wrongs and they are out.
+    private static string word = null;    //word holder, part of the old way, may be redundant.
+    private string nxtletter;           //nxt letter to compare strike
+    private bool wordspelt = false;     //completed word bool
+    private static string speltword="";
     public Text wordformed;
-    public Words words = new Words();
-    string word;
-    string nxtletter;
+    private static Words words = null;     //words class handler
 
-    void Awake()
-    {
-        wordformed = gameObject.AddComponent<Text>();
-    }
 
-    void OnTriggerEnter2D()
+
+    /// <summary>
+    /// sets up a static words
+    /// </summary>
+    /// <returns></returns>
+
+    private static Words GetWords()
     {
-        Debug.Log("TRIGGERED!");
-        health--;
-        word = words.giveCurrent();
-        if (health<= 0)
-        {            
-            Die();
+        if (words == null)
+        {
+            //get the words
+            if (words == null) words = new Words();
         }
+        return words;
     }
+
+    public static string getSpelling()
+    {
+        return speltword;
+    }
+
+    private static string GetWord()
+    {
+        if (word == null)
+        {
+            //get the words
+            if (word == null) word = words.giveCurrent();
+        }
+        return word;
+    }
+
+    private void Start()
+    {
+    }
+
+    private void Awake()
+    {
+        if (words == null)
+        {
+            words = GetWords();
+            Debug.Log("Words set");
+        }
+
+       // wordformed = gameObject.AddComponent<Text>();
+    }
+
+    private void OnTriggerEnter2D()
+    {
+        // Debug.Log("TRIGGERED!");    I know this works
+
+        Die();
+        //redundant
+
+        //health--;
+
+        //   if (health <= 0)
+        // {
+        //
+        // }
+    }
+
     /// <summary>
     /// kills the object
     /// </summary>
-    void Die()
+    private void Die()
     {
         spellWord();
         Destroy(gameObject);
-        
     }
-
 
     /// <summary>
     /// checks if the hit letter is the next letter for the word that needs to be spelt
     /// </summary>
-    void spellWord()
-    {
-        if (word == null)
+    /// 
+    private void spellWord()
+    {   //commenting out the below for another test
+        if (words != null)
         {
-            Debug.Log("Word is null, Calling next word");
-            word = words.getNextWord();
-        }
+            word = words.giveCurrent();
+            word = words.giveCurrent();
+            Debug.Log("Word set " + words.giveCurrent());
+            Debug.Log("Posc" + words.giveWordHead().ToString());
 
-        Debug.Log("I hit  " + gameObject.name);
-        //receives the head of the spelt word
-        nxtletter = getNextLetter(0);
-        Debug.Log("NextLetter to find is   " + word[0]);
-        if (nxtletter == gameObject.name)
-        {
+            //receives the head of the spelt word
+            nxtletter = word[words.giveWordHead()].ToString();
+
+            if (nxtletter == gameObject.name)
             {
-
-                string modified = wordformed.text.Insert(wordformed.text.Length, gameObject.name);
-                wordformed.text = modified;
-                //delete head of word
-                if(word.Length>=1)
                 {
-                    Debug.Log("removed " + word[0]);
+                    speltword += gameObject.name;
+                    if (words.giveWordHead() < words.giveCurrent().Length)
+                    {
+                        string modified = wordformed.text.Insert(wordformed.text.Length, gameObject.name);
+                        wordformed.text = modified;
+                        //delete head of word
+                        Debug.Log("virtual removed " + word[words.giveWordHead()]);
 
-                    Debug.Log("full word " + word);
-
-
-                    word.Remove(0,1);
-                    Debug.Log("full word after remove" + word);
-                    Debug.Log("NextLetter to find is   " + word[0]);
+                        words.letterhit();
+                        if (words.giveWordHead() >= words.giveCurrent().Length)
+                        {
+                            wordformed.text = "You done it pal";
+                            getNextWord();
+                        }
+                    }
+                    else
+                    {
+                        //may never hit this, but idc
+                        wordformed.text = "You done it pal";
+                        getNextWord();
+                    }
                 }
-                else
-                {
-                    Debug.Log("get fucked kid, the word check is not filled");
-                }
-              
+            }
+            else
+            {
+                wordformed.text = "wrong :(";
+                Debug.Log("Lost HP");
+                health--;
             }
         }
         else
         {
-            wordformed.text = "wrong :(";
+            Debug.Log("Word is null, Calling head word");
+            word = words.giveCurrent();
+            Debug.Log("Word set "+ words.giveCurrent());
+            Debug.Log("Posc" + words.giveWordHead().ToString());
+            //receives the head of the spelt word
+            nxtletter = word[words.giveWordHead()].ToString();
+
+            if (nxtletter == gameObject.name)
+            {
+                speltword += gameObject.name;
+                if (words.giveWordHead() < word.Length)
+                {
+                    string modified = wordformed.text.Insert(wordformed.text.Length, gameObject.name);
+                    wordformed.text = modified;
+                    //delete head of word
+                    Debug.Log("virtual removed " + word[words.giveWordHead()]);
+                    words.letterhit();
+                    if (words.giveWordHead() >= words.giveCurrent().Length)
+                    {
+                        wordspelt = true;
+                        wordformed.text = "You done it pal";
+                        getNextWord();
+                    }
+                }
+                else
+                {
+                    ///ru ru ru
+                    wordformed.text = "You done it pal";
+                    getNextWord();
+                }
+            }
+            else
+            {
+                wordformed.text = "wrong :(";
+                Debug.Log("Lost HP");
+                health--;
+            }
         }
 
-        if (wordformed.text.Length == 4)
+        if (health <= 0)
         {
-            wordformed.text = "You done it pal";
+            Debug.Log("ded");
+            //game over scripts
+        }
+        if (wordspelt == true)
+        {
+            Debug.Log("Wordspelt!!!");
             getNextWord();
         }
+
+        //more relics
+        /*   if (wordformed.text.Length == 4)
+            {
+                wordformed.text = "You done it pal";
+                getNextWord();
+            }
+            */
+        this.wordformed.text = speltword;
     }
 
-
     /// <summary>
-    /// gets next word in the series of words
+    /// sets up the next word for the game
     /// </summary>
-    void getNextWord()
+    private void getNextWord()
     {
-            for (int i = 1; i < words.Size(); i++)
-            {
-                word = words.getNextWord();
-            }
-        
+        //change scripts
+        Debug.Log("gib code");
+        speltword = "";
+        word = GetWords().getNextWord();
+        Debug.Log("The next word is : " + word);
+        wordspelt = false;
     }
 
     /// <summary>
@@ -109,9 +218,15 @@ public class Bubbles : MonoBehaviour {
     /// <returns></returns>
     public string getNextLetter(int next)
     {
-        return word[next].ToString();
+        if (word.Length < next)
+        {
+            return null;
+        }
+        else
+        {
+            return word[next].ToString();
+        }
     }
-
 
     /// <summary>
     /// a way to seach the word to see if the char exists
@@ -122,7 +237,7 @@ public class Bubbles : MonoBehaviour {
     public int giveCharIndex(char search)
     {
         int counter = 0;
-        foreach(char x in word)
+        foreach (char x in word)
         {
             if (x == search)
             {
@@ -131,10 +246,17 @@ public class Bubbles : MonoBehaviour {
             counter++;
         }
         return 0;
-
     }
-    void Update()
+
+    private void Update()
     {
-        wordformed.text = words.giveCurrent();
+        if (wordformed != null)
+        {
+              this.wordformed.text = Bubbles.getSpelling();
+        }
+        else
+        {
+            wordformed = gameObject.AddComponent<Text>();
+        }
     }
 }
