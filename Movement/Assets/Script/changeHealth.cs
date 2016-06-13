@@ -38,6 +38,7 @@ public class changeHealth : MonoBehaviour {
         else
         {
             sprite.sprite = dead;
+            Application.LoadLevel(4);
         }
     }
 }
