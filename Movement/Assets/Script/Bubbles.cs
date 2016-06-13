@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Bubbles : MonoBehaviour
 {
-    private static int health = 2;        //hp of the player, 2 wrongs and they are out.
+    public static int health = 3;        //hp of the player, 2 wrongs and they are out.
     public static string word = null;    //word holder, part of the old way, may be redundant.
     private string nxtletter;           //nxt letter to compare strike
     private bool wordspelt = false;     //completed word bool
@@ -246,6 +246,15 @@ public class Bubbles : MonoBehaviour
             counter++;
         }
         return 0;
+    }
+
+    /// <summary>
+    /// Returns the number of lives the player has
+    /// </summary>
+    /// <returns>health</returns>
+    public static int getNumberLives()
+    {
+        return health;
     }
 
     private void Update()
