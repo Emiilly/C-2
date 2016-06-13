@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: cb70170cfb3acf2418b33c9fce9a5b95
+timeCreated: 1465813264
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - fullHp: {fileID: 21300002, guid: 9ae4c9c8836bf8e4499f27be927a6d24, type: 3}
+  - twoHp: {fileID: 21300006, guid: 9ae4c9c8836bf8e4499f27be927a6d24, type: 3}
+  - oneHp: {fileID: 21300008, guid: 6c3c1d43aa17d70429a49f32c398fad9, type: 3}
+  - dead: {fileID: 21300000, guid: 1d095519f7fdd434cb6697e5a532de38, type: 3}
+  - sprite: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
