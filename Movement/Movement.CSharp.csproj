@@ -64,6 +64,12 @@
     <Reference Include="Mono.Cecil">
       <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Bubbles.cs" />
@@ -75,6 +81,7 @@
     <Compile Include="Assets\Script\Word.cs" />
     <Compile Include="Assets\Script\WordHandler.cs" />
     <Compile Include="Assets\Script\Words.cs" />
+    <Compile Include="Assets\Script\changeHealth.cs" />
     <Compile Include="Assets\Script\changeImage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
