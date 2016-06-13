@@ -2,42 +2,30 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ChangeImage : MonoBehaviour
-{
+public class changeImage : MonoBehaviour {
     public RawImage img;
-    public string[] words;
-    public Bubbles bubbles = new Bubbles();
+    public string currentWord;
+
     // Use this for initialization
     void Start ()
     {
-        words = new string[10];
-        words[0] = "banana";
-        words[1] = "apple";
-        words[2] = "kiwi";
-        words[3] = "mango";
-        //turns off the image until it is called from the changePicture class
-        img.enabled = false;
-
-     //   string word = bubbles.GetWord();
-
+        img = GetComponent<RawImage>();//
+        img.enabled = false; //hide image untill new word is given
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        //ChangePicture();
-    }
+        ChangePicture();
+	}
 
     /// <summary>
-    /// This class
+    /// Method that changes the image for the current word
     /// </summary>
-    public void ChangePicture(string word)
+    public void ChangePicture()
     {
-        img.enabled = true;
-     //   string word = "";
-        int index = Random.Range(0, 3);
-        word = words[index];
-
+        string word = Bubbles.GetWord();
         GetComponent<RawImage>().texture = Resources.Load<Texture2D>(word);
+        img.enabled = true;
     }
 }
