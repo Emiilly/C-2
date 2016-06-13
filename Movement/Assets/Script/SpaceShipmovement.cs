@@ -24,10 +24,10 @@ public class SpaceShipmovement : MonoBehaviour {
         if (elapsedTime >= 10)
         {
             elapsedTime -= 10;
-            //DeleteAll();
+            DeleteAll();
             randomBubbles();
         }
-
+        
 
         float delta = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
@@ -54,6 +54,7 @@ public class SpaceShipmovement : MonoBehaviour {
         setPositions();
 
     }
+
 
     void setPositions()
     {
@@ -148,7 +149,7 @@ public class SpaceShipmovement : MonoBehaviour {
 
     void randomBubbles()
     {
-        //do your stuff here.
+        //get 12 random numbers and enter them into an array as gameobjects of the letters
         int random = 0;
         GameObject[] randomNumbers = new GameObject[12];
         for (int i = 0; i < 12; i++)
@@ -240,7 +241,7 @@ public class SpaceShipmovement : MonoBehaviour {
             randomNumbers[i] = place;
         }
 
-
+        //place the new randomly generated letters into the positions
         Instantiate(randomNumbers[0], position1, Quaternion.identity);
         Instantiate(randomNumbers[1], position2, Quaternion.identity);
         Instantiate(randomNumbers[2], position3, Quaternion.identity);

@@ -1,10 +1,38 @@
 fileFormatVersion: 2
 guid: 3824a068393d67649b122123f20a5de3
-timeCreated: 1463833642
+timeCreated: 1465833896
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - furball2: {instanceID: 0}
+  - A: {fileID: 179084, guid: 53debb6cb05768a4eb690c68c667f7a3, type: 2}
+  - B: {fileID: 123086, guid: b3812d883e74be243bb463d9c307bb68, type: 2}
+  - C: {fileID: 162250, guid: bcb7804306df92141a52cf50bf9341ac, type: 2}
+  - D: {fileID: 106266, guid: cd23a1918d0feb943ab8c3a615c39081, type: 2}
+  - E: {fileID: 199038, guid: 6f1b0adde9d4b514a96280a9e670f353, type: 2}
+  - F: {fileID: 117980, guid: 43d29110bdcae0241883348123d8686f, type: 2}
+  - G: {instanceID: 0}
+  - H: {instanceID: 0}
+  - I: {instanceID: 0}
+  - J: {instanceID: 0}
+  - K: {instanceID: 0}
+  - L: {instanceID: 0}
+  - M: {instanceID: 0}
+  - N: {instanceID: 0}
+  - O: {instanceID: 0}
+  - P: {instanceID: 0}
+  - Q: {instanceID: 0}
+  - R: {instanceID: 0}
+  - S: {instanceID: 0}
+  - T: {instanceID: 0}
+  - U: {instanceID: 0}
+  - V: {instanceID: 0}
+  - W: {instanceID: 0}
+  - X: {instanceID: 0}
+  - Y: {instanceID: 0}
+  - Z: {instanceID: 0}
+  - place: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
