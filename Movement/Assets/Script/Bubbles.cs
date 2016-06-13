@@ -1,5 +1,6 @@
 ﻿using Assets.Script;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 //be mindful of below
@@ -49,11 +50,17 @@ public class Bubbles : MonoBehaviour
 
     private void Start()
     {
-
-    }
+       
+}
 
     private void Awake()
     {
+        health = 3;        //hp of the player, 2 wrongs and they are out.
+        word = null;    //word holder, part of the old way, may be redundant.          //nxt letter to compare strike
+        wordspelt = false;     //completed word bool
+        speltword = "";
+        words = null;
+
         if (words == null)
         {
             words = GetWords();
@@ -180,6 +187,7 @@ public class Bubbles : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("ded");
+            Application.LoadLevel(Application.loadedLevel);
             //game over scripts
         }
         if (wordspelt == true)

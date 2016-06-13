@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Assets.Script
 {
@@ -83,6 +84,7 @@ namespace Assets.Script
                     }
                     else
                     {
+                        Application.LoadLevel(5);
                         reset();
                         return easyWords[currentselection];
                     }
@@ -108,6 +110,7 @@ namespace Assets.Script
                     }
                     else
                     {
+                        Application.LoadLevel(5);
                         reset();
                         return mediumWords[currentselection];
                     }
@@ -133,6 +136,7 @@ namespace Assets.Script
                     }
                     else
                     {
+                        Application.LoadLevel(5);
                         reset();
                         return hardWords[currentselection];
                     }
