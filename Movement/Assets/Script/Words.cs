@@ -27,9 +27,10 @@ namespace Assets.Script
         private int spellingpos = 0;
 
         private bool first_selection = true;
-        private static string[] easyWords = { "BALL", "BARK", "COIN", "FUEL" };
-        private static string[] mediumWords = { "BEARD", "BRAKE", "COINAGE", "REDGUARD" };
-        private static string[] hardWords = { "CRUCIBLE", "AIRPLANE", "MISERABLE", "DISGUSTING" }; //jetfuel cant melt steelbeams #bushdid911
+        private static string[] easyWords = { "BALL", "BARK", "COIN", "FUEL", "BABY", "FISH", "GOLD", "GOLF", "HARP", "IDEA" };
+        private static string[] mediumWords = { "BULLET", "SPONGE", "POISON", "PRINCE", "DESERT", "VOWELS", "LETTER", "DIVING", "FROZEN", "DRIVER" };
+        private static string[] hardWords = { "ELEPHANT", "PRISONER", "TRIANGLE", "HOSPITAL", "CHILDREN", "COMPUTER", "SQUIRREL", "SCORPION", "REGISTER", "SANDWICH" };
+
 
         private static Word[] dummyWords = { new Word("BALL"), new Word("BARK"), new Word("COIN"), new Word("FUEL") };
 
