@@ -16,12 +16,26 @@ public class Bubbles : MonoBehaviour
     private static string speltword="";
     public Text wordformed;
     private static Words words = null;     //words class handler
+    public Text score;
 
 
     /// <summary>
     /// sets up a static words
     /// </summary>
     /// <returns></returns>
+    public Bubbles()
+        {
+        if(health == 0)
+            {
+            
+        health = 3;        //hp of the player, 2 wrongs and they are out.
+        word = null;    //word holder, part of the old way, may be redundant.          //nxt letter to compare strike
+        wordspelt = false;     //completed word bool
+        speltword = "";
+        words = null;
+            SceneManager.LoadScene(5);
+        }
+    }
 
     private static Words GetWords()
     {
@@ -55,11 +69,7 @@ public class Bubbles : MonoBehaviour
 
     private void Awake()
     {
-        health = 3;        //hp of the player, 2 wrongs and they are out.
-        word = null;    //word holder, part of the old way, may be redundant.          //nxt letter to compare strike
-        wordspelt = false;     //completed word bool
-        speltword = "";
-        words = null;
+        
 
         if (words == null)
         {
@@ -100,23 +110,31 @@ public class Bubbles : MonoBehaviour
     /// 
     private void spellWord()
     {   //commenting out the below for another test
+
+        string[] sArr = gameObject.name.ToString().Split('(');
+        string objname = sArr[0];
+
         if (words != null)
         {
+            
             word = words.giveCurrent();
+            Debug.Log(word);
             word = words.giveCurrent();
-            Debug.Log("Word set " + words.giveCurrent());
+            Debug.Log("Word set " + word);
             Debug.Log("Posc" + words.giveWordHead().ToString());
 
             //receives the head of the spelt word
             nxtletter = word[words.giveWordHead()].ToString();
+            Debug.Log(nxtletter);
+            Debug.Log(objname);
 
-            if (nxtletter == gameObject.name)
+            if (nxtletter == (objname))
             {
                 {
-                    speltword += gameObject.name;
+                    speltword += (objname);
                     if (words.giveWordHead() < words.giveCurrent().Length)
                     {
-                        string modified = wordformed.text.Insert(wordformed.text.Length, gameObject.name);
+                        string modified = wordformed.text.Insert(wordformed.text.Length, (objname));
                         wordformed.text = modified;
                         //delete head of word
                         Debug.Log("virtual removed " + word[words.giveWordHead()]);
@@ -138,13 +156,14 @@ public class Bubbles : MonoBehaviour
             }
             else
             {
-                wordformed.text = "wrong :(";
+                
                 Debug.Log("Lost HP");
                 health--;
             }
         }
         else
         {
+            Debug.Log(objname);
             Debug.Log("Word is null, Calling head word");
             word = words.giveCurrent();
             Debug.Log("Word set "+ words.giveCurrent());
@@ -152,12 +171,16 @@ public class Bubbles : MonoBehaviour
             //receives the head of the spelt word
             nxtletter = word[words.giveWordHead()].ToString();
 
-            if (nxtletter == gameObject.name)
+            
+            
+            
+
+            if (nxtletter == (objname))
             {
-                speltword += gameObject.name;
+                speltword += objname;
                 if (words.giveWordHead() < word.Length)
                 {
-                    string modified = wordformed.text.Insert(wordformed.text.Length, gameObject.name);
+                    string modified = wordformed.text.Insert(wordformed.text.Length, (objname));
                     wordformed.text = modified;
                     //delete head of word
                     Debug.Log("virtual removed " + word[words.giveWordHead()]);

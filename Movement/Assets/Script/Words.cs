@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Script
 {
@@ -11,6 +12,11 @@ namespace Assets.Script
         /// <summary>
         /// game state enum for cycling the words
         /// </summary>
+        /// 
+        private int scoreinc = 0;
+
+
+
         private enum wordstates
         { easy, medium, hard, test };
 
@@ -37,8 +43,8 @@ namespace Assets.Script
 
         public Words()
         {
-           //initializing because too dumb to set up first selection
-            string dummy=this.getNextWord();
+            //initializing because too dumb to set up first selection
+            string dummy = this.getNextWord();
 
         }
 
@@ -76,7 +82,7 @@ namespace Assets.Script
                 }
                 else
                 {
-                    if (currentselection + 1 < easyWords.Length )  //may need to check if it's based on 0 or not
+                    if (currentselection + 1 < easyWords.Length)  //may need to check if it's based on 0 or not
                     {
                         currentselection++;
                         this.spellingpos = 0;
@@ -173,7 +179,7 @@ namespace Assets.Script
         /// <returns></returns>
         public int Size()
         {
-            if(currentstate==wordstates.easy)
+            if (currentstate == wordstates.easy)
             {
                 return easyWords.Length;
             }
@@ -228,6 +234,12 @@ namespace Assets.Script
                     currentstate = x;
                 }
             }
+        }
+
+        //return score
+        public int getScore()
+        {
+            return scoreinc;
         }
     }
 }
