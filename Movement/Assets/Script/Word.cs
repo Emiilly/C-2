@@ -33,7 +33,7 @@ public class Word
     /// </summary>
     /// <param name="position"></param>
     void RemoveLetter(int position)
-    {   //we can maybe use remove if we know the object
+    {  
         myLetters.RemoveAt(position);
     }
 }

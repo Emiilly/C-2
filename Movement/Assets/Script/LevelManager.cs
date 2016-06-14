@@ -5,9 +5,8 @@ public class LevelManager : MonoBehaviour {
 
 	public void LoadScene(int name)
     {
-
-        //SceneManager.LoadScene(name);   maybe change to this in the future at some point
+       //Gets the int of the screen that the user wants to load 
+       //and sends them to the correct scene
        Application.LoadLevel(name);
-       
     }
 }

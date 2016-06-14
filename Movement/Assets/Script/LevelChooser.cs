@@ -20,7 +20,7 @@ public class LevelChooser : MonoBehaviour
     }
     private void OnTriggerEnter2D()
     {
-       
+       //gets the gameobjects name to retrieve the correct array for the level
         Words.setLevel(gameObject.name);
         Debug.Log("Level is now " + gameObject.name);
         SceneManager.LoadScene("Game");

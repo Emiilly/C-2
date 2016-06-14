@@ -15,33 +15,28 @@ public class BubbleTimer : MonoBehaviour
     public Vector3 position1, position2, position3, position4, position5, position6, position7, position8,
                    position9, position10, position11, position12;
 
-    public float elapsedTime;
+    public float time;
 
     // Update is called once per frame
     void Update()
     {
-        elapsedTime += Time.deltaTime;
+        //create a timer for random bubbles
+        time += Time.deltaTime;
 
-        if (elapsedTime >= 4)
+        if (time >= 4)
         {
-            elapsedTime -= 4;
+            time -= 4;
+            //Removes all unused bubble clones
             DeleteAll();
+            //places new bubbles
             randomBubbles();
         }
-
-
-        
-    {
-            // Which is the current position of the ship
-            // Quaternion.identity = add the bullet with no rotation
-            
-
-    }
-
+        //sets the positions for future bubbles
         setPositions();
 
 }
-
+    //Get position from sphere place holder and give that
+    //position to the bubbles
 void setPositions()
 {
 
@@ -131,18 +126,21 @@ void setPositions()
 
     }
 
-
+    //Create random bubbles
     void randomBubbles()
     {
         //get 12 random numbers and enter them into an array as gameobjects of the letters
         int random = 0;
+        //create gameobject array to enter the gameobject
         GameObject[] randomNumbers = new GameObject[12];
+        //Create int array to enter the random numbers
         int[] numbersUsed = new int[12];
         for (int i = 0; i < 12; i++)
         {
+            //generate random number
             bool alreadyUsed = false;
             random = UnityEngine.Random.Range(1, 26);
-
+            //Check if the number array has any dupilcate numbers
             if (i > 0)
             {
                 foreach (int number in numbersUsed)
@@ -153,7 +151,7 @@ void setPositions()
                     }
                 }
             }
-
+            //if there are duplicate numbers in the array then create another random
             if (alreadyUsed)
             {
                 while (alreadyUsed)
@@ -170,7 +168,7 @@ void setPositions()
                     }
                 }
             }
-
+            //If ints are not duplicates then convert the random to a random gameobject
             switch (random)
             {
                 case 1:
@@ -252,7 +250,7 @@ void setPositions()
                     place = Z;
                     break;
             }
-
+            //place the now converted random gameobject into place variable
             randomNumbers[i] = place;
             numbersUsed[i] = random;
         }
@@ -274,8 +272,9 @@ void setPositions()
 
     public void DeleteAll()
     {
-
+        //creates gameobject bubbles array from gameobjects with tags allbubbles which were all given to letter prefabs
         GameObject[] bubbles = GameObject.FindGameObjectsWithTag("allBubbles");
+        //Loop through the array and destroy each bubble
         foreach (GameObject bubble in bubbles)
             Destroy(bubble);
 

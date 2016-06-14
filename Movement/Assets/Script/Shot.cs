@@ -2,9 +2,11 @@
 using System.Collections;
 
 public class Shot : MonoBehaviour {
-
+   
+    //Speed of the bullet
     public float speed = 3.0f;
     private Rigidbody2D rigi;
+
     // Update is called once per frame
     void FixedUpdate()
     {

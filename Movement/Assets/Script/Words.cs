@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Assets.Script
 {
     /// <summary>
-    /// Main class for holding the words, in the future, will have word objects
+    /// Main class for holding the words,will have word objects
     /// </summary>
     public class Words
     {
@@ -18,7 +18,7 @@ namespace Assets.Script
 
 
         private enum wordstates
-        { easy, medium, hard, test };
+        { easy, medium, hard };
 
         private static wordstates currentstate = wordstates.easy;  //defaults to easy
 
@@ -34,13 +34,12 @@ namespace Assets.Script
         private int spellingpos = 0;
 
         private bool first_selection = true;
+        //Array of words of game
         private static string[] easyWords = { "BALL", "BARK", "COIN", "FUEL", "BABY", "FISH", "GOLD", "GOLF", "HARP", "IDEA" };
         private static string[] mediumWords = { "BULLET", "SPONGE", "POISON", "PRINCE", "DESERT", "VOWELS", "LETTER", "DIVING", "FROZEN", "DRIVER" };
         private static string[] hardWords = { "ELEPHANT", "PRISONER", "TRIANGLE", "HOSPITAL", "CHILDREN", "COMPUTER", "SQUIRREL", "SCORPION", "REGISTER", "SANDWICH" };
 
-
-        private static Word[] dummyWords = { new Word("BALL"), new Word("BARK"), new Word("COIN"), new Word("FUEL") };
-
+        
         public Words()
         {
             //initializing because too dumb to set up first selection
@@ -148,28 +147,7 @@ namespace Assets.Script
                     }
                 }
             }
-            if (currentstate == wordstates.test)
-            {
-                if (first_selection == true)
-                {
-                    first_selection = false;
-                    return dummyWords[0].giveSelf();
-                }
-                else
-                {
-                    if (currentselection + 1 <= easyWords.Length - 1)  //may need to check if it's based on 0 or not
-                    {
-                        this.currentselection++;
-                        this.spellingpos = 0;
-                        return dummyWords[currentselection].giveSelf();
-                    }
-                    else
-                    {
-                        reset();
-                        return dummyWords[currentselection].giveSelf();
-                    }
-                }
-            }
+          
 
             return "NAN";
         }
