@@ -23,9 +23,9 @@ public class BubbleTimer : MonoBehaviour
         //create a timer for random bubbles
         time += Time.deltaTime;
 
-        if (time >= 4)
+        if (time >= 3)
         {
-            time -= 4;
+            time -= 3;
             //Removes all unused bubble clones
             DeleteAll();
             //places new bubbles

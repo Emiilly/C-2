@@ -34,6 +34,11 @@ public class movement : MonoBehaviour {
             Instantiate(furball2, transform.position, Quaternion.identity);
 
         }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
     }
-    
+
 }

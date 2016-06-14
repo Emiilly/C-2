@@ -14,8 +14,8 @@ public class PauseMenu : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetButtonDown("Pause"))
-        {
+        if (Input.GetKeyDown(KeyCode.P))
+            {
             paused = !paused;
         }
         //if paused the game will pause, characters stop moving
