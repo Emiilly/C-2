@@ -33,7 +33,7 @@ public class Bubbles : MonoBehaviour
         wordspelt = false;     //completed word bool
         speltword = "";
         words = null;
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene(4);
         }
     }
 

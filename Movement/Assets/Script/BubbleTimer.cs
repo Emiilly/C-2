@@ -134,12 +134,42 @@ void setPositions()
 
     void randomBubbles()
     {
-        //do your stuff here.
+        //get 12 random numbers and enter them into an array as gameobjects of the letters
         int random = 0;
         GameObject[] randomNumbers = new GameObject[12];
+        int[] numbersUsed = new int[12];
         for (int i = 0; i < 12; i++)
         {
+            bool alreadyUsed = false;
             random = UnityEngine.Random.Range(1, 26);
+
+            if (i > 0)
+            {
+                foreach (int number in numbersUsed)
+                {
+                    if (random == number)
+                    {
+                        alreadyUsed = true;
+                    }
+                }
+            }
+
+            if (alreadyUsed)
+            {
+                while (alreadyUsed)
+                {
+                    random = UnityEngine.Random.Range(1, 26);
+                    alreadyUsed = false;
+
+                    foreach (int number in numbersUsed)
+                    {
+                        if (random == number)
+                        {
+                            alreadyUsed = true;
+                        }
+                    }
+                }
+            }
 
             switch (random)
             {
@@ -224,9 +254,10 @@ void setPositions()
             }
 
             randomNumbers[i] = place;
+            numbersUsed[i] = random;
         }
 
-
+        //place the new randomly generated letters into the positions
         Instantiate(randomNumbers[0], position1, Quaternion.identity);
         Instantiate(randomNumbers[1], position2, Quaternion.identity);
         Instantiate(randomNumbers[2], position3, Quaternion.identity);
