@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Assets.Script
 {
     /// <summary>
-    /// Main class for holding the words,will have word objects
+    /// Main class for holding the words
     /// </summary>
     public class Words
     {
@@ -40,9 +40,12 @@ namespace Assets.Script
         private static string[] hardWords = { "ELEPHANT", "PRISONER", "TRIANGLE", "HOSPITAL", "CHILDREN", "COMPUTER", "SQUIRREL", "SCORPION", "REGISTER", "SANDWICH" };
 
         
+		/// <summary>
+		/// default constructor of the words class
+		/// </summary>
         public Words()
         {
-            //initializing because too dumb to set up first selection
+      	
             string dummy = this.getNextWord();
 
         }
@@ -81,7 +84,7 @@ namespace Assets.Script
                 }
                 else
                 {
-                    if (currentselection + 1 < easyWords.Length)  //may need to check if it's based on 0 or not
+                    if (currentselection + 1 < easyWords.Length) 
                     {
                         currentselection++;
                         this.spellingpos = 0;
@@ -180,9 +183,13 @@ namespace Assets.Script
             this.spellingpos = 0;
         }
 
+		/// <summary>
+		/// returns the current word in the list
+		/// </summary>
+		/// <returns>The current.</returns>
         public string giveCurrent()
         {
-            //easyword next
+            //eas
             if (currentstate == wordstates.easy)
             {
                 return easyWords[currentselection];
