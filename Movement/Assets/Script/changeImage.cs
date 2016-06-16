@@ -11,15 +11,19 @@ public class changeImage : MonoBehaviour {
     public string word;
     public float elapsedTime;
 
-    // Use this for initialization
+    /// <summary>
+    /// Use this for initialization
+    /// </summary>
     void Start ()
     {
         img = GetComponent<RawImage>();//refer to the Raw Image box on the field
         img.enabled = false; //hide image untill new word is given
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
+    void Update ()
     {
         word = Bubbles.GetWord();
         elapsedTime += Time.deltaTime;

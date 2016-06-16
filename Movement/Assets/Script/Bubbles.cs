@@ -3,20 +3,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 /// <summary>
 /// Bubbles scripter class
 /// </summary>
 public class Bubbles : MonoBehaviour
 {
-    public static int health = 3;        //hp of the player, 2 wrongs and they are out.
-    public static string word = null;    //word holder, part of the old way, may be redundant.
-    private string nxtletter;           //nxt letter to compare strike
-    private bool wordspelt = false;     //completed word bool
+    public static int health = 3;        //hp of the player, 3 wrongs and they are out.
+    public static string word = null;    //word holder
+    private string nxtletter;            //nxt letter to compare strike
+    private bool wordspelt = false;      //completed word bool
     private static string speltword="";
     public Text wordformed;
-    private static Words words = null;     //words class handler
-    public Text score;
+    private static Words words = null;   //words class handler
 
 
     /// <summary>
@@ -26,13 +24,11 @@ public class Bubbles : MonoBehaviour
         {
         if(health == 0)
             {
-            
-       			health = 3;        //hp of the player, 2 wrongs and they are out.
-       			word = null;    //word holder, part of the old way, may be redundant.          //nxt letter to compare strike
-        		wordspelt = false;     //completed word bool
+       			health = 3;       
+       			word = null;    
+        		wordspelt = false; 
         		speltword = "";
         		words = null;
-        		SceneManager.LoadScene(4);
         	}
     	}
 
@@ -49,6 +45,7 @@ public class Bubbles : MonoBehaviour
         }
         return words;
     }
+
 	/// <summary>
 	/// Gets the spelling.
 	/// </summary>
@@ -57,7 +54,6 @@ public class Bubbles : MonoBehaviour
     {
         return speltword;
     }
-
 
 	/// <summary>
 	/// Gets the word.
@@ -73,10 +69,6 @@ public class Bubbles : MonoBehaviour
         return word;
     }
 
-    private void Start()
-    {
-       
-}
 	/// <summary>
 	/// Awake this instance: wakes the obeject attached.
 	/// </summary>
@@ -85,10 +77,12 @@ public class Bubbles : MonoBehaviour
         if (words == null)
         {
             words = GetWords();
-            Debug.Log("Words set");
         }
     }
 
+    /// <summary>
+    /// Hits bubble
+    /// </summary>
     private void OnTriggerEnter2D()
     {
         Die();
@@ -109,20 +103,19 @@ public class Bubbles : MonoBehaviour
     /// 
     private void spellWord()
     { 
+        // get the name of the gameobject (the bubble), so that the name is just the letter
         string[] sArr = gameObject.name.ToString().Split('(');
         string objname = sArr[0];
 
         if (words != null)		//Grabs the current word and sets the next letter to find
 		{
             word = words.giveCurrent();
-            Debug.Log(word);
-            word = words.giveCurrent();
             Debug.Log("Word set " + word);
             Debug.Log("Posc" + words.giveWordHead().ToString());
 
             //receives the head of the spelt word
             nxtletter = word[words.giveWordHead()].ToString();
-            Debug.Log(nxtletter);
+            Debug.Log("next letter:" + nxtletter);
             Debug.Log(objname);
 
             if (nxtletter == (objname))		//compares the letter of the object hit with the head letter
@@ -139,27 +132,24 @@ public class Bubbles : MonoBehaviour
                         words.letterhit();
                         if (words.giveWordHead() >= words.giveCurrent().Length)
                         {
-                            wordformed.text = "You done it pal";
                             getNextWord();
                         }
                     }
                     else
                     {
-                        wordformed.text = "You done it pal";		//if the length is 0, the word has been spelt
+                        //if the length is 0, the word has been spelt
                         getNextWord();
                     }
                 }
             }
             else   //if it gets here, then you hit the wrong word, then hp gets modified
             {
-                
                 Debug.Log("Lost HP");
                 health--;
             }
         }
         else  //nullword, word not set?!  Gets new word, then compare
         {
-            Debug.Log(objname);
             Debug.Log("Word is null, Calling head word");
             word = words.giveCurrent();
             Debug.Log("Word set "+ words.giveCurrent());
@@ -179,20 +169,16 @@ public class Bubbles : MonoBehaviour
                     if (words.giveWordHead() >= words.giveCurrent().Length)
                     {
                         wordspelt = true;
-                        wordformed.text = "You done it pal";
                         getNextWord();
                     }
                 }
                 else
                 {
-                    ///ru ru ru
-                    wordformed.text = "You done it pal";
                     getNextWord();
                 }
             }
             else
             {
-                wordformed.text = "wrong :(";
                 Debug.Log("Lost HP");
                 health--;
             }
@@ -200,7 +186,7 @@ public class Bubbles : MonoBehaviour
 
         if (health <= 0)//dead check
         {
-            Debug.Log("ded");
+            Debug.Log("dead");
             Application.LoadLevel(Application.loadedLevel);
             //game over scripts
         }
@@ -218,8 +204,6 @@ public class Bubbles : MonoBehaviour
     /// </summary>
     private void getNextWord()
     {
-        //change scripts
-        Debug.Log("gib code");
         speltword = "";
         word = GetWords().getNextWord();
         Debug.Log("The next word is : " + word);

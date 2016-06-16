@@ -6,14 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class LevelChooser : MonoBehaviour
 {
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -21,15 +16,15 @@ public class LevelChooser : MonoBehaviour
             Application.Quit();
         }
     }
+
+    /// <summary>
+    /// gets the gameobjects name to retrieve the correct array for the level
+    /// </summary>
     private void OnTriggerEnter2D()
     {
-       //gets the gameobjects name to retrieve the correct array for the level
         Words.setLevel(gameObject.name);
         Debug.Log("Level is now " + gameObject.name);
         SceneManager.LoadScene("Game");
-       
-
-
     }
 
 }

@@ -10,8 +10,10 @@ public class movement : MonoBehaviour {
     //The min and max of how far the cat can go on screen
     public float minX = -7.5f;
     public float maxX = 7.5f;
-    
-    // Update is called once per frame
+
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void Update()
     {
         //Movement of sir spelling cat
@@ -30,10 +32,10 @@ public class movement : MonoBehaviour {
         // When the spacebar is pressed shoot fireball
         if (Input.GetKeyDown(KeyCode.Space))
         {
-      
             Instantiate(furball2, transform.position, Quaternion.identity);
-
         }
+
+        // When escape is pressed, quit game
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();

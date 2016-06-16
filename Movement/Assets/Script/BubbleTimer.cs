@@ -16,8 +16,10 @@ public class BubbleTimer : MonoBehaviour
                    position9, position10, position11, position12;
 
     public float time;
-
-    // Update is called once per frame
+    
+    /// <summary>
+    /// Update is called once per frame
+    /// <summary>
     void Update()
     {
         //create a timer for random bubbles
@@ -35,9 +37,11 @@ public class BubbleTimer : MonoBehaviour
         setPositions();
 
 }
-    //Get position from sphere place holder and give that
-    //position to the bubbles
-void setPositions()
+    /// <summary>
+    ///Get position from sphere place holder and give that
+    ///position to the bubbles
+    /// </summary>
+    void setPositions()
 {
 
         //Get position from place holders.
@@ -126,7 +130,10 @@ void setPositions()
 
     }
 
-    //Create random bubbles
+    /// <summary>
+    /// Create random bubbles
+    /// </summary>
+
     void randomBubbles()
     {
         //get 12 random numbers and enter them into an array as gameobjects of the letters
@@ -270,6 +277,9 @@ void setPositions()
         Instantiate(randomNumbers[11], position12, Quaternion.identity);
     }
 
+    /// <summary>
+    /// Destroy the bubbles
+    /// </summary>
     public void DeleteAll()
     {
         //creates gameobject bubbles array from gameobjects with tags allbubbles which were all given to letter prefabs

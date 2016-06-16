@@ -17,9 +17,10 @@ public class changeHealth : MonoBehaviour {
     {
         sprite = GetComponent<Image>(); //refer to the Image box on the field
     }
-	
-	// Update is called once per frame
-	void Update ()
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
+    void Update ()
     {
         CheckHealth();//call check health method every frame
     }

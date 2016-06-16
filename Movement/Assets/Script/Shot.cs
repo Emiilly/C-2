@@ -7,15 +7,19 @@ public class Shot : MonoBehaviour {
     public float speed = 3.0f;
     private Rigidbody2D rigi;
 
-    // Update is called once per frame
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void FixedUpdate()
     {
         rigi = GetComponent<Rigidbody2D>();
         rigi.velocity = new Vector2(0.0f, speed);
-
     }
-    // Function called when the object goes out of the screen
-   void OnBecameInvisible()
+
+    /// <summary>
+    /// Function called when the object goes out of the screen
+    /// </summary>
+    void OnBecameInvisible()
     {
         // Destroy the bullet 
         Destroy(gameObject);

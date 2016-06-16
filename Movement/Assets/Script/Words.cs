@@ -12,8 +12,7 @@ namespace Assets.Script
         /// <summary>
         /// game state enum for cycling the words
         /// </summary>
-        /// 
-        private int scoreinc = 0;
+        ///
 
 
 
@@ -45,9 +44,7 @@ namespace Assets.Script
 		/// </summary>
         public Words()
         {
-      	
             string dummy = this.getNextWord();
-
         }
 
         /// <summary>
@@ -219,12 +216,6 @@ namespace Assets.Script
                     currentstate = x;
                 }
             }
-        }
-
-        //return score
-        public int getScore()
-        {
-            return scoreinc;
         }
     }
 }
